@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # Display the PID of this script
-echo "The PID of this script is: $$"
+echo 3888

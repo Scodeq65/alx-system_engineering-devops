@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Display a list of currently running processes with hierarchy
+# Using ps command to get process information in a user-friendly format
+# -e: Select all processes
+# -o: Customize the output format
+# pid: Process ID
+# ppid: Parent Process ID
+# user: User who owns the process
+# cmd: Command being executed
+# --forest: Display process hierarchy as a tree
+ps axo pid,ppid,user,cmd --forest

@@ -6,6 +6,6 @@
 # pid: Process ID
 # ppid: Parent Process ID
 # user: User who owns the process
-# comm: Command being executed
+# cmd: Command being executed
 # --forest: Display process hierarchy as a tree
-ps -eo pid,ppid,user,comm --forest
+ps axo pid,ppid,user,cmd --forest

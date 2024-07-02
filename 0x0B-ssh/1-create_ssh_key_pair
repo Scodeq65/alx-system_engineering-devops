@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Script to create an RSA key pair with specific requirements
 
-# Variables
 KEY_NAME="school"
 
-# Generate RSA key pair
 ssh-keygen -b 4096 -t rsa -f $KEY_NAME -N "betty"

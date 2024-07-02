@@ -1,0 +1,1 @@
+This is a Readme file  explaining the concept of generating public and Private SSH key

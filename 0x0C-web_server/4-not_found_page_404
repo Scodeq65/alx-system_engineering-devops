@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Bash script to configure Nginx
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo sh -c 'echo "Ceci n'\''est pas une page" > /var/www/html/404_custom.html'
+
+sudo sed -i '/listen 80 default_server;/a \\t error_page 404 /404_custom.html;' /etc/nginx/sites-available/default
+sudo sed -i '/error_page 404 /404_custom.html;/a \\t location = /404_custom.html {' /etc/nginx/sites-available/default
+sudo sed -i '/location = \/404_custom.html {/a \\t \\t internal;' /etc/nginx/sites-available/default
+sudo sed -i '/internal;/a \\t }' /etc/nginx/sites-available/default
+sudo service nginx restart

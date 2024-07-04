@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Automated setup for Docker installation and configuration
+
+# Update package index
+apt-get update
+
+# Install Docker
+apt-get -y install docker.io
+
+# Link and fix paths
+ln -sf /usr/bin/docker.io /usr/local/bin/docker
+sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+
+# Configure Docker to start when the server boots (optional)
+update-rc.d docker.io defaults
+
+# Download a Docker Container (example: pulling the Ubuntu image)
+docker pull ubuntu
+
+# Run a Docker Container (example: running Ubuntu with bash shell)
+docker run -i -t ubuntu /bin/bash
+
+echo "Docker setup complete."

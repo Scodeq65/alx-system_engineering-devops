@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# A bash script to install Nginx and configure a custom HTTP resoponse Header
+
+# add a custom header to Nginz configuration
+sudo sed -i '/listen 80 default_server;/a \
+	add_header X-served-By $hostname;' /etc/nginx/sites-available/default
+
+sudo service nginx restart

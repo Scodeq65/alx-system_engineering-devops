@@ -1,22 +1,26 @@
-# Configure an Nginx server using Puppet
-
-# Ensure the nginx package is installed
+ure the nginx package is installed
 package { 'nginx':
-  ensure  => installed,
-}
-file_line { 'install':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'listen 80 default_server;',
-  line   => 'rewrite ^/redirect_me htps://wwww.youtube.come/watch?vQH2-TGUlwu4 permanent;',
+  ensure => installed,
 }
 
+# Ensure the /var/www/html/index.html file contains the correct content
 file { '/var/www/html/index.html':
   ensure  => file,
   content => 'Hello World!',
 }
 
-service {'nginx':
-  ensure  => running,
-  require => package['nginx']
+# Ensure the nginx default site configuration is correct
+file { '/etc/nginx/sites-available/default':
+  ensure  => file,
+  content => template('nginx/default.erb'),
+  require => Package['nginx'],
 }
+
+# Ensure the nginx service is running and enabled
+service { 'nginx':
+  ensure    => running,
+  enable    => true,
+  subscribe => File['/etc/nginx/sites-available/default'],
+  require   => Package['nginx'],
+}
+

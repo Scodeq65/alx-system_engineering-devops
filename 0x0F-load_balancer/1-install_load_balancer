@@ -3,7 +3,7 @@
 
 sudo apt-get -y update
 sudo apt-get -y install haproxy
-sudo chown $USER:USER /etc/haproxy/haproxy.cfg
+sudo chown $USER:$USER /etc/haproxy/haproxy.cfg
 
 echo "
 frontend sodiqtechcode
@@ -12,6 +12,7 @@ frontend sodiqtechcode
     default_backend sod
 
 backend sod
+    mode http
     balance roundrobin
     server 221460-web-01 34.224.2.244:80 check
     server 221460-web-02 54.160.89.110:80 check" >> /etc/haproxy/haproxy.cfg

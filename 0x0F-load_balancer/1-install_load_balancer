@@ -15,6 +15,7 @@ backend sod
     mode http
     balance roundrobin
     server 221460-web-01 34.224.2.244:80 check
-    server 221460-web-02 54.160.89.110:80 check" >> /etc/haproxy/haproxy.cfg
+    server 221460-web-02 54.160.89.110:80 check
+" | sudo tee /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart

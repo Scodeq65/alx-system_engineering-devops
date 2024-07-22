@@ -1,12 +1,31 @@
-#!/usr/bin/env bash
-# Script to Install load bablncer
+!#/usr/bin/env bash
+# A script that install a load balancer
 
 sudo apt-get -y update
 sudo apt-get -y install haproxy
 sudo chown $USER:$USER /etc/haproxy/haproxy.cfg
 
 echo "
-frontend sodiqtechcode
+global
+    log /dev/log    local0
+    log /dev/log    local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontent sodiqtechcode
     bind *:80
     mode http
     default_backend sod
@@ -14,10 +33,12 @@ frontend sodiqtechcode
 backend sod
     mode http
     balance roundrobin
-    server 221460-web-01 34.224.2.244:80 check
-    server 221460-web-02 54.160.89.110:80 check
+    timeout connect 5000ms
+    timeout client  50000ms
+    timeout server  50000ms
+    server 221460-web-01 54.89.118.186:80 check
+    server 221460-web-02 3.83.245.19:80 check
 " | sudo tee /etc/haproxy/haproxy.cfg
 
-sudo echo "ENABLE=1" | sudo tee -a /etc/default/haproxy
-
+sudo service haproxy enable
 sudo service haproxy restart

@@ -25,7 +25,7 @@ defaults
     timeout client 50000ms
     timeout server 50000ms
 
-frontent sodiqtechcode
+frontend sodiqtechcode
     bind *:80
     mode http
     default_backend sod

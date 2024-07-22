@@ -2,10 +2,9 @@
 # Create an Ubuntu header using puppet
 
 exec { 'http header':
-  command  => '
-    apt-get update -y &&
-    apt-get install nginx -y &&
-    sed -i "/server_name _/a add_header X-Serverd-By HOSTNAME;" /etc/nginx/sites-available/default &&
-    service nginx restart',
-  provider => 'shell',
+    command  => 'sudo apt-get update -y;
+    sudo apt-get install nginx -y;
+    sudo sed -i "/server_name _/a add_header X-Serverd-By &HOSTNAME;" /etc/nginx/sites-available/default
+    sudo service nginx restart',
+    provider => shell,
 }

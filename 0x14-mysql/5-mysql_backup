@@ -1,19 +1,5 @@
 #!/usr/bin/env bash
-# Backup MySQL databases and compress to a tar.gz archive
+# A script that generates a mysql dump file and compress archive out of it.
 
-PASSWORD=$1
-DATE=$(date +%d-%m-%Y)
-DUMP_FILE="backup.sql"
-ARCHIVE_FILE="${DATE}.tar.gz"
-
-# Dump all MySQL databases
-mysqldump -u root -p"${PASSWORD}" --all-databases > "${DUMP_FILE}"
-
-# Check if dump was successful and compress the dump file
-if [ -f "${DUMP_FILE}" ]; then
-	tar -czf "${ARCHIVE_FILE}" "${DUMP_FILE}"
-	rm "${DUMP_FILE}"
-else
-	echo "MySQL dump failed."
-	exit 1
-fi
+mysqldump -uroot -p"$1" --all-database > backup.sql
+tar -cvzf "$(date +%d-%m-%Y)".tar.gz backup.sql

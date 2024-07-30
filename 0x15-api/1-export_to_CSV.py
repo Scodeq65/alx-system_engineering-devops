@@ -37,7 +37,7 @@ def export_todo_to_csv(employee_id):
                     username,
                     str(task.get('completed')),
                     task.get('title')
-            ])
+                ])
 
         print(f"Data exported successfully to {csv_filename}")
 

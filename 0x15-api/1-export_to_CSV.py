@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Exports TODO list data for a given employee ID to a CSV file."""
 
-import requests
 import csv
+import requests
 from sys import argv
 
 
@@ -30,18 +30,14 @@ def export_todo_to_csv(employee_id):
 
         # Write data to CSV file
         with open(csv_filename, mode='w', newline='') as file:
-            writer = csv.writer(file, quoting=csv.QUOTE_MINIMAL)
+            writer = csv.writer(file, quoting=csv.QUOTE_ALL)
             for task in todos_data:
-                user_id = employee_id
-                task_completed = task.get('completed')
-                task_completed = task.get('completed')
-                task_title = task.get('title')
                 writer.writerow([
-                    user_id,
+                    employee_id,
                     username,
-                    task_completed,
-                    task_title
-                ])
+                    str(task.get('completed')),
+                    task.get('title')
+            ])
 
         print(f"Data exported successfully to {csv_filename}")
 

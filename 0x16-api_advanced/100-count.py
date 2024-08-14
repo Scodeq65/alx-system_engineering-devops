@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Queries the Reddit API recursively to count occurrences of keywords in
 hot articles' titles for a given subreddit and prints a sorted count."""
+from collections import Counter
 import re
 import requests
-from collections import Counter
 
 
 def count_words(subreddit, word_list, counts=None, after=None):

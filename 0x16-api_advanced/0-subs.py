@@ -2,9 +2,11 @@
 """Module to get the number of subscribers for a given subreddit"""
 import requests
 
+
 def number_of_subscribers(subreddit):
     """
-    Queries the Reddit API and returns the number of subscribers for a given subreddit.
+    Queries the Reddit API and returns the number of subscribers
+    for a given subreddit.
     If the subreddit is invalid, returns 0.
 
     Args:

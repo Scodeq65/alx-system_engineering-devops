@@ -1,5 +1,6 @@
 # This is 0x19-postmortem task using webstack debugging #1 # Written by Sodiq Agbaraojo
 
+![Postmortem Technical](./pst-mrtm1.webp)
 
 # Issue Summary
 Duration of the Outage: The outage started at 04:45 AM and was resolved by 05:45 PM West African Time.
@@ -46,4 +47,4 @@ Here is the script i mentioned to ensure the configuration is always active:
 cat /etc/nginx/sites-available/default > /etc/nginx/sites-enabled/default sudo service nginx restart
 
 ## This script ensures that the correct configuration is enabled and restarts Nginx to apply the changes
-
+![Postmortem Flow-Chart](./pst-mrtm2.webp)

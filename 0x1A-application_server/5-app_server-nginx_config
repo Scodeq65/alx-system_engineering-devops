@@ -1,0 +1,87 @@
+server {
+    listen 80;
+    listen [::]:80 default_server;
+    server_name 54.89.118.186;
+    add_header X-Served-By 221460-web-01;
+
+    # Serve /airbnb-onepage/ route on AirBnB_clone_v3
+    location = /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+    }
+
+    #serve /airbnb-dynamic/number_odd_or_even/ route
+    location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+        proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+    }
+
+    # serve AirBnB_clone_v3 API
+    location /api {
+        proxy_pass http://127.0.0.1:5002/api;
+    }
+
+    # configure /2-hbnb route at AirBnB_clone_v4 as root location
+    location / {
+        proxy_pass http://127.0.0.1:5003/2-hbnb;
+    }
+
+    # serve static content for AirBnB_clone_v4
+    location /static {
+        aliase web_dynamic/static/;
+    }
+
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+
+    location /redirect_me {
+        return 301 http://cuberule.com/;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+      root /etc/nginx/html;
+      internal;
+    }
+}server {
+    listen 80;
+    listen [::]:80 default_server;
+    server_name 54.89.118.186;
+    add_header X-Served-By 221460-web-01;
+
+    # Serve /airbnb-onepage/ route on AirBnB_clone_v3
+    location = /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+    }
+
+    #serve /airbnb-dynamic/number_odd_or_even/ route
+    location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+        proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+    }
+
+    # serve AirBnB_clone_v3 API
+    location /api {
+        proxy_pass http://127.0.0.1:5002/api;
+    }
+
+    # configure /2-hbnb route at AirBnB_clone_v4 as root location
+    location / {
+        proxy_pass http://127.0.0.1:5003/2-hbnb;
+    }
+
+    # serve static content for AirBnB_clone_v4
+    location /static {
+        alias web_dynamic/static/;
+    }
+
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+
+    location /redirect_me {
+        return 301 http://cuberule.com/;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+      root /etc/nginx/html;
+      internal;
+    }
+}

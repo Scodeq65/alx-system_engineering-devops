@@ -7,5 +7,5 @@ exec { 'Increase-ulimt':
 
 # restart nginx
 exec { 'nginx-restart':
-    command => '/usr/sbin/service nginx restart'
+    command => '/usr/sbin/service nginx restart',
 }
